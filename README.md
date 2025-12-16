@@ -1,4 +1,4 @@
-# LEGO Investment Capstone
+# Predicting LEGO Investment Values with Historical Price Data
 
 This project analyzes LEGO set characteristics and secondary market pricing data
 to model investment potential using regression techniques.
