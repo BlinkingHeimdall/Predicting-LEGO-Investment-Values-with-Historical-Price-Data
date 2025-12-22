@@ -100,7 +100,7 @@ Launch Jupyter Notebook:
 jupyter notebook
 ```
 
-Run this notebook:
+Run the following notebook:
 analysis.ipynb
 - Linear regression
 - Log-transformed regression
@@ -114,7 +114,8 @@ analysis.ipynb
     - Linear Regression
     - Log-Transformed Linear Regression
     - Random Forest Regression
-    - Supervised Classification
+
+- Supervised Classification
     - Random Forest Classifier
 
 - Evaluation Metrics
