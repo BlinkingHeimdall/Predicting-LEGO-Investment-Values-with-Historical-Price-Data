@@ -25,7 +25,8 @@ This repository was developed as part of the **WGU D502 Data Analytics Capstone*
 │   │   └── lego_model_ready.csv
 │   └── README.md
 ├── notebooks/
-│   ├── analysis.ipynb
+│   ├── 01_eda.ipynb
+│   ├── 02_analysis.ipynb
 ├── src/
 │   └── make_dataset.py
 ├── environment.yml
@@ -41,9 +42,7 @@ This repository was developed as part of the **WGU D502 Data Analytics Capstone*
 The dataset used in this project is publicly available and licensed under the MIT License.
 
  - Source: Kaggle
-
  - Dataset: LEGO Sets and Prices Over Time
-
  - Link: https://www.kaggle.com/datasets/alexracape/lego-sets-and-prices-over-time
 
 Both the raw dataset and the processed modeling dataset are included in this repository to ensure full reproducibility for academic evaluation.
@@ -51,6 +50,8 @@ Both the raw dataset and the processed modeling dataset are included in this rep
 ## Environment Setup
 
 This project uses conda for environment management.
+All required Python libraries, including pandas, NumPy, scikit-learn, matplotlib, and seaborn, are specified in the provided environment.yml file.
+
 
 ### 1. Clone the Repository
 
@@ -72,12 +73,40 @@ conda activate lego-invest
 python -m ipykernel install --user --name lego-invest --display-name "Python (lego-invest)"
 ```
 
+## Recommended Execution Order
+
+To fully reproduce the project from raw data to final results, execute the components in the following order:
+
+1. `notebooks/01_eda.ipynb` – Exploratory analysis of the raw dataset
+2. `src/make_dataset.py` – Data cleaning and feature engineering
+3. `notebooks/02_analysis.ipynb` – Model training, evaluation, and visualization
+
+## Exploratory Data Analysis (EDA)
+
+Exploratory Data Analysis (EDA) is conducted prior to data cleaning and modeling to understand the structure, distributions, and limitations of the raw dataset.
+
+The EDA process includes:
+- Examining summary statistics for key numeric variables
+- Identifying missing values and inconsistent formatting
+- Analyzing skewness and extreme values in aftermarket prices
+- Exploring relationships between LEGO set characteristics and aftermarket value ratios
+
+The findings from EDA directly informed the data preparation logic implemented in `src/make_dataset.py`, including:
+- Converting missing minifigure counts to zero rather than removing records
+- Filtering invalid pricing records
+- Applying a logarithmic transformation to the target variable to address skewness
+
+The EDA can be reproduced by running:
+
+```bash
+jupyter notebook notebooks/01_eda.ipynb
+```
 
 ## Data Preparation
 
 The processed modeling dataset can be recreated at any time using the provided script.
 ```bash
-python -m src.make_dataset
+python src.make_dataset.py
 ```
 
 This script:
@@ -101,12 +130,14 @@ jupyter notebook
 ```
 
 Run the following notebook:
-analysis.ipynb
+01_analysis.ipynb
 - Linear regression
 - Log-transformed regression
 - Random Forest regression
 - Random Forest classification
 - Model evaluation and visualizations
+
+For classification, LEGO sets are labeled as investment-worthy when the aftermarket value ratio is greater than or equal to 2.0.
 
 ## Methods Used
 
@@ -131,6 +162,7 @@ analysis.ipynb
     - Feature importance bar charts
     - Predicted vs. actual scatter plots
     - Confusion matrix heatmaps
+    - Distribution and relationship plots using Seaborn
 
 
 ## Reproducibility Notes
