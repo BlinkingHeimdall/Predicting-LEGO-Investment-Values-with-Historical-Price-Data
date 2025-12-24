@@ -106,7 +106,7 @@ jupyter notebook notebooks/01_eda.ipynb
 
 The processed modeling dataset can be recreated at any time using the provided script.
 ```bash
-python src.make_dataset.py
+python src/make_dataset.py
 ```
 
 This script:
